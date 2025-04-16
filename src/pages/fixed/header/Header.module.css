@@ -2,10 +2,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url("/src/assets/img/bannerHeader.jpg");
+  /* background-image: url("/src/assets/img/bannerHeader.jpg"); */
+  background-image: url("/src/assets/img/Pokedex-Header-Banner.jpg");
   background-size: cover;
   background-position: center;
-  height: 200px;
+  height: 220px;
   padding: 1rem;
 }
 
@@ -29,7 +30,8 @@ nav a:hover {
 }
 
 .searchInput {
-  padding: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.2rem;
   margin-left: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -37,6 +39,6 @@ nav a:hover {
 }
 
 .searchInput:focus {
-  border-color: blue;
+  border-color: gold;
   outline: none;
 }
