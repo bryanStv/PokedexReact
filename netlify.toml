@@ -2,6 +2,9 @@
   command = "pnpm build"
   publish = "dist"
 
-[plugins]
-  [[plugins]]
+[env]
+  NODE_ENV = "production"
+  PACKAGE_MANAGER = "pnpm"
+
+[[plugins]]
   package = "netlify-plugin-pnpm"
