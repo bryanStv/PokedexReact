@@ -1,20 +1,14 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "../pages/fixed/header/Header";
 
 const RootLayout = () => {
   return (
-    <div>
-      <header style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-        <nav>
-          <Link to="/" style={{ marginRight: "1rem" }}>
-            Home
-          </Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
+    <>
+      <Header />
       <main style={{ padding: "1rem" }}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 

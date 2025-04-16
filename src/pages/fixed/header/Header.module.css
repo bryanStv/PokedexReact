@@ -1,0 +1,29 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("/src/assets/img/bannerHeader.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+
+nav a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: gold;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+nav a:hover {
+  color: white;
+}
