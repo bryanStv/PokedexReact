@@ -1,0 +1,7 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[plugins]
+  [[plugins]]
+  package = "netlify-plugin-pnpm"
