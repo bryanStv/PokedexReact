@@ -1,12 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import { useState } from "react";
+import { getPokemon } from "../../../services";
+import { getPokemonNamesFromJson } from "../../../services/pokemon/getPokemonNameFromJson";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const navigate = useNavigate();
+
+  const fetchPokemon = async () => {
+    const response = await getPokemon(searchTerm);
+    if (!response) return navigate(`/pokemon/0`);
+    navigate(`/pokemon/${response.id}`);
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    if (value.length >= 3) {
+      const matches = getPokemonNamesFromJson(value);
+      setSuggestions(matches);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (name: string) => {
+    setSearchTerm(name);
+    setSuggestions([]);
   };
 
   return (
@@ -17,13 +40,39 @@ const Header = () => {
           <Link to="/pokedex">Pokedex</Link>
           <Link to="/about">About</Link>
         </div>
-        <input
-          type="text"
-          placeholder="Buscar pokémon..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className={styles.searchInput}
-        />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetchPokemon();
+          }}
+          className={styles.searchForm}
+        >
+          <div className={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder="Buscar pokémon..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className={styles.searchInput}
+            />
+            {suggestions.length > 0 && (
+              <ul className={styles.suggestionsList}>
+                {suggestions.map((name) => (
+                  <li
+                    key={name}
+                    className={styles.suggestionItem}
+                    onClick={() => handleSuggestionClick(name)}
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <button type="submit" className={styles.searchButton}>
+              Buscar
+            </button>
+          </div>
+        </form>
       </nav>
     </header>
   );

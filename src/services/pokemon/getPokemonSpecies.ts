@@ -26,19 +26,3 @@ export const getPokemonSpecies = async (
     console.error("Error al obtener datos de la especie del Pokémon:", error);
   }
 };
-
-// import { PokemonSpecies } from "../../models/interfaces/Pokemon";
-
-// export const getPokemonSpecies = async (
-//   id: string
-// ): Promise<PokemonSpecies | undefined> => {
-//   try {
-//     const response = await fetch(
-//       `https://pokeapi.co/api/v2/pokemon-species/${id}`
-//     );
-//     const data: PokemonSpecies = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching Pokémon species:", error);
-//   }
-// };

@@ -2,9 +2,11 @@ import { Pokemon, SpriteType } from "../../models/interfaces/Pokemon";
 import { getImagenFromEnum } from "../../utils/functions/pokemon/getImagenFromEnum";
 import { getKgFromHg } from "../../utils/functions/pokemon/getKgFromHg";
 
-export const getPokemon = async (id: number) => {
+export const getPokemon = async (
+  query: number | string
+): Promise<Pokemon | undefined> => {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
     const rawData = await response.json();
 
     const imagen: string = SpriteType.OfficialArtworkFrontDefault;
@@ -29,5 +31,6 @@ export const getPokemon = async (id: number) => {
     }
   } catch (error) {
     console.error("Error al obtener el Pokémon:", error);
+    return undefined;
   }
 };

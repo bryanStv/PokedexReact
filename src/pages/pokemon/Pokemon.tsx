@@ -26,6 +26,7 @@ const PokemonPage = () => {
     fetchPokemonData();
   }, [fetchPokemonData]);
 
+  if (id === "0") return <div>Pokemon no encontrado, prueba con otro</div>;
   if (loading) return <div>Loading...</div>;
   if (!pokemonSpecies) return <div>No se encontró la Especie del pokemon</div>;
   if (!pokemon) return <div>No se encontró el pokemon</div>;
@@ -62,7 +63,9 @@ const PokemonPage = () => {
 
         <section className={styles.flavorText}>
           <h3>Descripción:</h3>
-          <p>{pokemonSpecies?.flavor_text_entries[26]?.flavor_text}</p>
+          {pokemonSpecies?.flavor_text_entries.find(
+            (entry) => entry.language.name === "es"
+          )?.flavor_text || "No hay descripción en español"}
         </section>
       </section>
     </div>
