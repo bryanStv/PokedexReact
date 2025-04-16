@@ -14,6 +14,7 @@ const Header = () => {
       <nav className={styles.nav}>
         <div className={styles.links}>
           <Link to="/">Inicio</Link>
+          <Link to="/pokedex">Pokedex</Link>
           <Link to="/about">About</Link>
         </div>
         <input

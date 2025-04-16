@@ -1,25 +1,12 @@
-import { Fragment } from "react/jsx-runtime";
 import PokemonCard from "../../components/ui/cards/PokemonCard";
 import { getPokemon } from "../../services/index";
-//import getRandomPokemonId from "../../utils/functions/pokemon/getRandomPokemonId";
+import getRandomPokemonId from "../../utils/functions/pokemon/getRandomPokemonId";
 
 const Home = () => {
   return (
     <>
-      {/* <PokemonCard pokemonData={getPokemon(getRandomPokemonId())} /> */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {Array.from({ length: 151 }).map((_, i) => (
-          <Fragment key={i}>
-            <PokemonCard pokemonData={getPokemon(i + 1)} />
-          </Fragment>
-        ))}
-      </div>
+      <h1 style={{ textAlign: "center" }}>El Pokemon que te toca es:</h1>
+      <PokemonCard pokemonData={getPokemon(getRandomPokemonId())} />
     </>
   );
 };
