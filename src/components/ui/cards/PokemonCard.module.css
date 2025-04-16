@@ -1,37 +1,52 @@
 .card {
-  border: 1px solid red;
-  border-radius: 4px;
-  width: 225px;
-  height: 390px;
-  background-image: url("../../../assets/img/pokedexCardBackground.jpg");
-  background-size: cover;
-  background-position: center;
-  margin: 0.5rem;
+  border-radius: 20px;
+  padding: 0 20px 0 0;
 }
 
-.card h5 {
+.cardBody {
   display: flex;
-  position: relative;
-  top: 32px;
-  right: 73px;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  background-color: grey;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.cardBody img {
+  width: 20em;
+  z-index: 1;
+}
+
+.cardBody div {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.cardBody div p {
+  margin-left: 10px;
   color: black;
 }
 
-.card img {
+.cardFooter {
   position: relative;
-  top: 60px;
-  width: 100%;
-}
-
-.card h2 {
   display: flex;
-  position: relative;
-  top: 75px;
+  bottom: 40px;
+  padding-top: 40px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  color: black;
+  background-color: red;
+  border-radius: 20px;
+  height: 100px;
+  z-index: -1;
+}
+
+.cardFooter h2 {
+  color: gold;
+}
+
+.cardFooter p {
+  color: white;
 }

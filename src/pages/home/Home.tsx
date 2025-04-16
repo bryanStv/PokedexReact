@@ -1,7 +1,7 @@
 import { Fragment } from "react/jsx-runtime";
 import PokemonCard from "../../components/ui/cards/PokemonCard";
 import { getPokemon } from "../../services/index";
-import getRandomPokemonId from "../../utils/functions/pokemon/getRandomPokemonId";
+//import getRandomPokemonId from "../../utils/functions/pokemon/getRandomPokemonId";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
           justifyContent: "center",
         }}
       >
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 151 }).map((_, i) => (
           <Fragment key={i}>
             <PokemonCard pokemonData={getPokemon(i + 1)} />
           </Fragment>
