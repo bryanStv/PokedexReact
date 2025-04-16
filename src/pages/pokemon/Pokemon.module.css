@@ -1,0 +1,87 @@
+/* Estilos generales */
+.pokemonPage {
+  font-family: "Arial", sans-serif;
+  color: #333;
+  max-width: 1200px; /* Cambié el max-width para hacerlo más ancho */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headerPokemon {
+  text-align: center;
+  margin-bottom: 30px;
+  background-image: none;
+}
+
+.pokemonName {
+  font-size: 2.5rem;
+  color: #4caf50;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.pokemonImage {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.speciesInfo {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.speciesTitle {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #2196f3;
+}
+
+.speciesList {
+  list-style: none;
+  padding: 0;
+}
+
+.speciesList li {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.speciesList strong {
+  color: #4caf50;
+}
+
+.flavorText {
+  margin-top: 20px;
+}
+
+.flavorText h3 {
+  font-size: 1.5rem;
+  color: #ff5722;
+}
+
+.flavorText p {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Estilo para el estado de carga */
+.loader {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ffc107;
+}
+
+/* Estilo para los mensajes de error */
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #f44336;
+}

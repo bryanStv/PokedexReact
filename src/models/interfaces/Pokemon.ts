@@ -13,6 +13,28 @@ export interface Pokemon {
   weight: number;
 }
 
+export interface FlavorTextEntry {
+  flavor_text: string;
+  language: { name: string };
+  version: { name: string };
+}
+
+export interface PokemonSpecies {
+  base_happiness: number;
+  capture_rate: number;
+  color: { name: string };
+  egg_groups: { name: string }[];
+  evolution_chain: { url: string };
+  habitat: { name: string };
+  gender_rate: number;
+  genera: { genus: string; language: { name: string } }[];
+  generation: { name: string };
+  growth_rate: { name: string };
+  shape: { name: string };
+  evolves_from_species: null | { name: string };
+  flavor_text_entries: FlavorTextEntry[];
+}
+
 export enum SpriteType {
   FrontDefault = "sprites.front_default",
   FrontShiny = "sprites.front_shiny",
