@@ -5,6 +5,4 @@
 [env]
   NODE_ENV = "production"
   PACKAGE_MANAGER = "pnpm"
-
-[[plugins]]
-  package = "netlify-plugin-pnpm"
+  PNPM_VERSION = "10.6.5"
