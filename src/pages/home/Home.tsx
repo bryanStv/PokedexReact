@@ -3,6 +3,7 @@ import style from "./Home.module.css";
 import { Pokemon } from "../../models/interfaces/Pokemon";
 import { getPokemon } from "../../services/index";
 import getRandomPokemonId from "../../utils/functions/pokemon/getRandomPokemonId";
+import PokeLoader from "../../components/ui/loader/PokeLoader";
 
 import { useEffect, useState } from "react";
 
@@ -33,7 +34,9 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <p style={{ textAlign: "center" }}>Cargando...</p>
+        <>
+          <PokeLoader />
+        </>
       )}
     </>
   );

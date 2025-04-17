@@ -3,6 +3,7 @@ import { Fragment, useState, useEffect } from "react";
 import PokemonCard from "../../components/ui/cards/PokemonCard";
 import { getPokemon } from "../../services/index";
 import { Pokemon } from "../../models/interfaces/Pokemon";
+import PokeLoader from "../../components/ui/loader/PokeLoader";
 
 const Pokedex = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -43,7 +44,7 @@ const Pokedex = () => {
   return (
     <>
       {loading ? (
-        <p style={{ textAlign: "center" }}>Cargando pokémon...</p>
+        <PokeLoader />
       ) : (
         <div
           style={{

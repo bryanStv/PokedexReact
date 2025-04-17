@@ -7,6 +7,7 @@ import {
   //MAX_STAT,
 } from "../../../utils/functions/pokemon/calculateStatPercentage";
 import StatBar from "../graphics/StatBar";
+import PokeLoader from "../loader/PokeLoader";
 
 interface CardProps {
   pokemonData: Pokemon;
@@ -27,7 +28,7 @@ const PokemonCard = (props: CardProps) => {
     fetchPokemon();
   }, [pokemonData]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <PokeLoader />;
   if (!pokemon) return <div>No se encontró el Pokémon</div>;
 
   return (
