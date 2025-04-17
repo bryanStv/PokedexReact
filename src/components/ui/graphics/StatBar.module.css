@@ -1,0 +1,56 @@
+.statRow {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.label {
+  width: 80px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.barContainer {
+  flex: 1;
+  width: 200px;
+  height: 12px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin: 0 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar {
+  height: 16px;
+  background-color: red;
+  min-width: 5px;
+  opacity: 1;
+}
+
+.value {
+  width: 30px;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+/* 🎨 Colores dinámicos */
+.red {
+  background-color: #e53935;
+}
+
+.orange {
+  background-color: #fb8c00;
+}
+
+.yellow {
+  background-color: #fdd835;
+}
+
+.green {
+  background-color: #43a047;
+}
+
+.blue {
+  background-color: #1e88e5;
+}
