@@ -20,14 +20,15 @@ const StatBar = ({ label, value, percentage }: StatBarProps) => {
 
   return (
     <div className={styles.statRow}>
-      <span className={styles.label}>{label}</span>
+      <span className={styles.label}>
+        {label}: {value}
+      </span>
       <div className={styles.barContainer}>
         <div
           className={`${styles.bar} ${barColor}`}
           style={{ width: `${percentage}%` }}
         ></div>
       </div>
-      <span className={styles.value}>{value}</span>
     </div>
   );
 };
