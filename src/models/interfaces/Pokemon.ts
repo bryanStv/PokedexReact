@@ -11,6 +11,12 @@ export interface Pokemon {
     speed: number;
   };
   weight: number;
+  cries?: Cries;
+}
+
+interface Cries {
+  latest: string;
+  legacy: string;
 }
 
 export interface FlavorTextEntry {

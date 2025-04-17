@@ -30,6 +30,11 @@
   margin-top: 20px;
 }
 
+.pokemonImage:hover {
+  transform: scale(1.4);
+  transition: transform 0.3s;
+}
+
 .speciesInfo {
   background-color: #fff;
   padding: 20px;
@@ -41,6 +46,12 @@
   font-size: 1.8rem;
   margin-bottom: 15px;
   color: #2196f3;
+}
+
+.containerInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .speciesList {

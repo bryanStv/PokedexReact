@@ -9,7 +9,7 @@
   text-align: right;
   font-weight: bold;
   font-size: 0.9rem;
-  color: white;
+  color: black;
   margin-bottom: 0.3rem;
 }
 
@@ -24,6 +24,7 @@
   width: 200px;
   height: 12px;
   background-color: #eee;
+  border: 1px solid #ccc;
   border-radius: 4px;
   margin: 0 10px;
   overflow: hidden;

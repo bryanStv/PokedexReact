@@ -15,7 +15,7 @@ const getBarColorClass = (percentage: number): string => {
 };
 
 const StatBar = ({ label, value, percentage }: StatBarProps) => {
-  console.log(`StatBar "${label}": value=${value}, percentage=${percentage}`);
+  //console.log(`StatBar "${label}": value=${value}, percentage=${percentage}`);
   const barColor = getBarColorClass(percentage);
 
   return (

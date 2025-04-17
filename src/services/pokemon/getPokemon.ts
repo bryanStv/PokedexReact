@@ -26,6 +26,10 @@ export const getPokemon = async (
           speed: rawData.stats[5].base_stat,
         },
         weight: getKgFromHg(rawData.weight),
+        cries: {
+          latest: rawData.cries.latest,
+          legacy: rawData.cries.legacy,
+        },
       };
       return pokemon;
     }
