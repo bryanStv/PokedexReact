@@ -1,24 +1,69 @@
-import { Fragment } from "react/jsx-runtime";
+import { Fragment, useState, useEffect } from "react";
 import PokemonCard from "../../components/ui/cards/PokemonCard";
 import { getPokemon } from "../../services/index";
-//import getRandomPokemonId from "../../utils/functions/pokemon/getRandomPokemonId";
+import { Pokemon } from "../../models/interfaces/Pokemon";
 
 const Pokedex = () => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pokemonsPerPage = 9;
+
+  const [pokemonsData, setPokemonsData] = useState<Pokemon[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      setLoading(true);
+      const startId = (currentPage - 1) * pokemonsPerPage + 1;
+      const endId = currentPage * pokemonsPerPage;
+
+      const promises: Promise<Pokemon>[] = [];
+      for (let i = startId; i <= endId; i++) {
+        promises.push(getPokemon(i) as Promise<Pokemon>);
+      }
+
+      const results = await Promise.all(promises);
+      setPokemonsData(results);
+      setLoading(false);
+    };
+
+    fetchPokemons();
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
   return (
     <>
-      {/* <PokemonCard pokemonData={getPokemon(getRandomPokemonId())} /> */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {Array.from({ length: 151 }).map((_, i) => (
-          <Fragment key={i}>
-            <PokemonCard pokemonData={getPokemon(i + 1)} />
-          </Fragment>
-        ))}
+      {loading ? (
+        <p style={{ textAlign: "center" }}>Cargando pokémon...</p>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {pokemonsData.map((pokemonData) => (
+            <Fragment key={pokemonData.id}>
+              <PokemonCard pokemonData={pokemonData as Pokemon} />
+            </Fragment>
+          ))}
+        </div>
+      )}
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Anterior
+        </button>
+        <span style={{ margin: "0 10px" }}>Página {currentPage}</span>
+        <button onClick={handleNextPage}>Siguiente</button>
       </div>
     </>
   );

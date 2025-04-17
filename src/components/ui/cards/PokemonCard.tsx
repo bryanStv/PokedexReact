@@ -4,7 +4,7 @@ import { Pokemon } from "../../../models/interfaces/Pokemon";
 import styles from "./PokemonCard.module.css";
 
 interface CardProps {
-  pokemonData: Promise<Pokemon | undefined>;
+  pokemonData: Pokemon;
 }
 
 const PokemonCard = (props: CardProps) => {
