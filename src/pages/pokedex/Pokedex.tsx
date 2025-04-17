@@ -1,3 +1,4 @@
+import style from "./Pokedex.module.css";
 import { Fragment, useState, useEffect } from "react";
 import PokemonCard from "../../components/ui/cards/PokemonCard";
 import { getPokemon } from "../../services/index";
@@ -58,12 +59,18 @@ const Pokedex = () => {
           ))}
         </div>
       )}
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+      <div className={style.containerButtons}>
+        <button
+          className={style.buttonPag}
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
           Anterior
         </button>
-        <span style={{ margin: "0 10px" }}>Página {currentPage}</span>
-        <button onClick={handleNextPage}>Siguiente</button>
+        <span className={style.pageTag}>Página {currentPage}</span>
+        <button className={style.buttonPag} onClick={handleNextPage}>
+          Siguiente
+        </button>
       </div>
     </>
   );

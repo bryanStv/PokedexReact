@@ -1,0 +1,24 @@
+.containerButtons {
+  text-align: center;
+  margin-top: 0;
+}
+
+.pageTag {
+  margin: 0 10px;
+  color: black;
+  font-size: 1rem;
+}
+
+.buttonPag {
+  background-color: red;
+  border: none;
+  padding: 0.2rem;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.buttonPag:hover {
+  background-color: #ff9900;
+}
