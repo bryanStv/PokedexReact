@@ -1,0 +1,25 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("/src/assets/img/bannerFooter.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 220px;
+  padding: 1rem;
+  /* border-top: 1px #ccc solid; */
+  margin-top: 2rem;
+}
+
+footer h1 {
+  position: relative;
+  height: 220px;
+  left: 85%;
+  padding: 1rem;
+  color: #d9f0e0;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
