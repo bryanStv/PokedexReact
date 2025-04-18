@@ -1,12 +1,13 @@
 import { Pokemon, SpriteType } from "../../models/interfaces/Pokemon";
 import { getImagenFromEnum } from "../../utils/functions/pokemon/getImagenFromEnum";
 import { getKgFromHg } from "../../utils/functions/pokemon/getKgFromHg";
+import { API_POKEMON } from "../apis";
 
 export const getPokemon = async (
   query: number | string
 ): Promise<Pokemon | undefined> => {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+    const response = await fetch(`${API_POKEMON}${query}`);
     const rawData = await response.json();
 
     const imagen: string = SpriteType.OfficialArtworkFrontDefault;

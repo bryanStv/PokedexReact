@@ -11,9 +11,9 @@ import playPokemonCry from "../../utils/functions/pokemon/playPokemonCry";
 
 const PokemonPage = () => {
   const { id } = useParams();
-  const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies | null>(
-    null
-  );
+  const [pokemonSpecies, setPokemonSpecies] = useState<
+    (PokemonSpecies & { flavorText: string }) | null
+  >(null);
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [loading, setLoading] = useState(true);
   const backgroundColor =
@@ -22,7 +22,7 @@ const PokemonPage = () => {
   const fetchPokemonData = useCallback(async () => {
     if (!id) return;
     const response = await getPokemonSpecies(id as string);
-    setPokemonSpecies(response as PokemonSpecies);
+    setPokemonSpecies(response as PokemonSpecies & { flavorText: string });
     const idNumber = parseInt(id as string);
     const response2 = await getPokemon(idNumber);
     setPokemon(response2 as Pokemon);
@@ -65,9 +65,7 @@ const PokemonPage = () => {
           </ul>
 
           <section className={styles.flavorText}>
-            {pokemonSpecies?.flavor_text_entries.find(
-              (entry) => entry.language.name === "es"
-            )?.flavor_text || "No hay descripción en español"}
+            {pokemonSpecies?.flavorText}
           </section>
         </div>
       </section>
