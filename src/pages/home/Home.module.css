@@ -1,3 +1,28 @@
 .homePageContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Tablet y móviles grandes */
+@media (max-width: 768px) {
+  .homePageContainer {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .homePageContainer {
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .homePageContainer h1 {
+    font-size: 1.4rem;
+  }
 }

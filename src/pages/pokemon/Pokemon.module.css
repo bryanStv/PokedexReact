@@ -108,3 +108,59 @@
   font-size: 1.5rem;
   color: #f44336;
 }
+
+/* 📱 Tablet */
+@media (max-width: 768px) {
+  .pokemonImage {
+    width: 220px;
+    margin-top: 10px;
+  }
+
+  .pokemonName {
+    font-size: 2rem;
+  }
+
+  .containerInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .speciesList li {
+    font-size: 1rem;
+  }
+
+  .flavorText {
+    font-size: 13px;
+    padding: 0.8rem;
+    margin: 1rem auto;
+  }
+}
+
+/* 📱 Móvil pequeño */
+@media (max-width: 480px) {
+  .pokemonImage {
+    width: 180px;
+  }
+
+  .pokemonName {
+    font-size: 1.6rem;
+  }
+
+  .speciesList li {
+    font-size: 0.95rem;
+  }
+
+  .flavorText {
+    font-size: 12px;
+    padding: 0.6rem;
+  }
+
+  .pokemonPage {
+    padding: 10px;
+  }
+
+  .stats-container {
+    width: 100%;
+  }
+}

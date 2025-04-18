@@ -88,3 +88,66 @@ nav a:hover {
 .suggestionItem:hover {
   background-color: #f0f0f0;
 }
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  .searchWrapper {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .searchInput {
+    width: 90%;
+    margin: 0 auto 0.5rem auto;
+  }
+
+  .searchButton {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .suggestionsList {
+    max-height: 150px;
+    width: 90%;
+    left: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  nav a {
+    font-size: 1.2rem;
+  }
+
+  .searchInput,
+  .searchButton {
+    font-size: 1rem;
+  }
+
+  .suggestionItem {
+    font-size: 0.9rem;
+  }
+}

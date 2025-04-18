@@ -23,3 +23,30 @@ footer h1 {
   margin: 0;
   padding: 0;
 }
+
+@media (max-width: 768px) {
+  footer {
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+
+  footer h1 {
+    position: static;
+    left: auto;
+    height: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  footer h1 {
+    font-size: 1.2rem;
+  }
+}
