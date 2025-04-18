@@ -6,8 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import PokeLoader from "../../components/ui/loader/PokeLoader";
 import { colorMap } from "../../models/records/ColorMap";
 import { translateShapeToSpanish } from "../../utils/functions/pokemon/translateShapeToSpanish";
-import StatBar from "../../components/ui/graphics/StatBar";
-import { calculateStatPercentage } from "../../utils/functions/pokemon/calculateStatPercentage";
+import PokemonStatsBars from "../../components/ui/graphics/PokemonStatsBars";
 
 const PokemonPage = () => {
   const { id } = useParams();
@@ -33,7 +32,7 @@ const PokemonPage = () => {
     fetchPokemonData();
   }, [fetchPokemonData]);
 
-  useEffect(() => {
+  const handlePokemonCry = () => {
     if (pokemon?.cries?.latest) {
       const audio = new Audio(pokemon.cries.latest);
       audio.play().catch((e) => {
@@ -46,7 +45,7 @@ const PokemonPage = () => {
         }
       });
     }
-  }, [pokemon]);
+  };
 
   if (id === "0") return <div>Pokemon no encontrado, prueba con otro</div>;
   if (loading) return <PokeLoader />;
@@ -57,41 +56,13 @@ const PokemonPage = () => {
       <header className={styles.headerPokemon}>
         <h1 className={styles.pokemonName}>{pokemon.name}</h1>
         <div className={`stats-container ${styles.statsContainer}`}>
-          <StatBar
-            label="HP"
-            value={pokemon.stats.hp}
-            percentage={calculateStatPercentage(pokemon.stats.hp)}
-          />
-          <StatBar
-            label="Ataque"
-            value={pokemon.stats.attack}
-            percentage={calculateStatPercentage(pokemon.stats.attack)}
-          />
-          <StatBar
-            label="Defensa"
-            value={pokemon.stats.defense}
-            percentage={calculateStatPercentage(pokemon.stats.defense)}
-          />
-          <StatBar
-            label="Sp.Atk"
-            value={pokemon.stats.specialAttack}
-            percentage={calculateStatPercentage(pokemon.stats.specialAttack)}
-          />
-          <StatBar
-            label="Sp.Def"
-            value={pokemon.stats.specialDefense}
-            percentage={calculateStatPercentage(pokemon.stats.specialDefense)}
-          />
-          <StatBar
-            label="Velocidad"
-            value={pokemon.stats.speed}
-            percentage={calculateStatPercentage(pokemon.stats.speed)}
-          />
+          <PokemonStatsBars pokemon={pokemon} />
         </div>
         <img
           className={styles.pokemonImage}
           src={pokemon.image}
           alt={`Imagen del pokemon ${pokemon.name}`}
+          onMouseEnter={handlePokemonCry}
         />
       </header>
 

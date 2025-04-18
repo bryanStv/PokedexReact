@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pokemon } from "../../../models/interfaces/Pokemon";
 import styles from "./PokemonCard.module.css";
-import {
-  calculateStatPercentage,
-  //MAX_STAT,
-} from "../../../utils/functions/pokemon/calculateStatPercentage";
-import StatBar from "../graphics/StatBar";
 import PokeLoader from "../loader/PokeLoader";
+import PokemonStatsBars from "../graphics/PokemonStatsBars";
 
 interface CardProps {
   pokemonData: Pokemon;
@@ -36,36 +32,7 @@ const PokemonCard = (props: CardProps) => {
       <div className={`card ${styles.card}`}>
         <div className={`card-body ${styles.cardBody}`}>
           <div className={`stats-container ${styles.statsContainer}`}>
-            <StatBar
-              label="HP"
-              value={pokemon.stats.hp}
-              percentage={calculateStatPercentage(pokemon.stats.hp)}
-            />
-            <StatBar
-              label="Ataque"
-              value={pokemon.stats.attack}
-              percentage={calculateStatPercentage(pokemon.stats.attack)}
-            />
-            <StatBar
-              label="Defensa"
-              value={pokemon.stats.defense}
-              percentage={calculateStatPercentage(pokemon.stats.defense)}
-            />
-            <StatBar
-              label="Sp.Atk"
-              value={pokemon.stats.specialAttack}
-              percentage={calculateStatPercentage(pokemon.stats.specialAttack)}
-            />
-            <StatBar
-              label="Sp.Def"
-              value={pokemon.stats.specialDefense}
-              percentage={calculateStatPercentage(pokemon.stats.specialDefense)}
-            />
-            <StatBar
-              label="Velocidad"
-              value={pokemon.stats.speed}
-              percentage={calculateStatPercentage(pokemon.stats.speed)}
-            />
+            <PokemonStatsBars pokemon={pokemon} />
           </div>
           <img src={pokemon.image} alt={pokemon.name} />
         </div>
