@@ -38,7 +38,7 @@ const PokemonCard = (props: CardProps) => {
           <img
             src={pokemon.image}
             alt={pokemon.name}
-            onMouseEnter={() => playPokemonCry(pokemon)}
+            //onMouseEnter={() => playPokemonCry(pokemon)}
           />
         </div>
         <div className={`card-footer ${styles.cardFooter}`}>

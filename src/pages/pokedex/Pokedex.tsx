@@ -6,7 +6,7 @@ import { Pokemon } from "../../models/interfaces/Pokemon";
 import PokeLoader from "../../components/ui/loader/PokeLoader";
 
 const Pokedex = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [startId, setStartId] = useState<number>(1);
   const pokemonsPerPage = 9;
 
   const [pokemonsData, setPokemonsData] = useState<Pokemon[]>([]);
@@ -15,30 +15,39 @@ const Pokedex = () => {
   useEffect(() => {
     const fetchPokemons = async () => {
       setLoading(true);
-      const startId = (currentPage - 1) * pokemonsPerPage + 1;
-      const endId = currentPage * pokemonsPerPage;
 
-      const promises: Promise<Pokemon>[] = [];
+      const endId = startId + pokemonsPerPage - 1;
+
+      const promises: Promise<Pokemon | undefined>[] = [];
       for (let i = startId; i <= endId; i++) {
-        promises.push(getPokemon(i) as Promise<Pokemon>);
+        promises.push(getPokemon(i));
       }
 
       const results = await Promise.all(promises);
-      setPokemonsData(results);
+      const filteredResults = results.filter(
+        (p): p is Pokemon => p !== undefined
+      );
+      setPokemonsData(filteredResults);
       setLoading(false);
     };
 
     fetchPokemons();
-  }, [currentPage]);
+  }, [startId]);
 
   const handleNextPage = () => {
-    setCurrentPage((prev) => prev + 1);
+    if (startId < 1023) {
+      setStartId((prev) => prev + pokemonsPerPage);
+    }
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+    if (startId > 1) {
+      setStartId((prev) => prev - pokemonsPerPage);
     }
+  };
+
+  const handleChangeGeneration = (generation: number) => {
+    setStartId(generation);
   };
 
   return (
@@ -46,30 +55,59 @@ const Pokedex = () => {
       {loading ? (
         <PokeLoader />
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {pokemonsData.map((pokemonData) => (
-            <Fragment key={pokemonData.id}>
-              <PokemonCard pokemonData={pokemonData as Pokemon} />
-            </Fragment>
-          ))}
-        </div>
+        <>
+          <div className={style.buttonGroup}>
+            {[
+              { label: "Gen I", id: 1 },
+              { label: "Gen II", id: 152 },
+              { label: "Gen III", id: 252 },
+              { label: "Gen IV", id: 387 },
+              { label: "Gen V", id: 494 },
+              { label: "Gen VI", id: 650 },
+              { label: "Gen VII", id: 722 },
+              { label: "Gen VIII", id: 810 },
+              { label: "Gen IX", id: 906 },
+            ].map(({ label, id }) => (
+              <button
+                key={label}
+                className={style.genButton}
+                onClick={() => handleChangeGeneration(id)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {pokemonsData.map((pokemonData) => (
+              <Fragment key={pokemonData.id}>
+                <PokemonCard pokemonData={pokemonData as Pokemon} />
+              </Fragment>
+            ))}
+          </div>
+        </>
       )}
       <div className={style.containerButtons}>
         <button
-          className={style.buttonPag}
+          className={style.genButton}
           onClick={handlePrevPage}
-          disabled={currentPage === 1}
+          disabled={startId === 1}
         >
           Anterior
         </button>
-        <span className={style.pageTag}>Página {currentPage}</span>
-        <button className={style.buttonPag} onClick={handleNextPage}>
+        <span className={style.pageTag}>
+          {startId} al {startId + pokemonsPerPage - 1}
+        </span>
+        <button
+          className={style.genButton}
+          onClick={handleNextPage}
+          disabled={startId === 1023}
+        >
           Siguiente
         </button>
       </div>
