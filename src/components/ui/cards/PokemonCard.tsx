@@ -13,6 +13,7 @@ const PokemonCard = (props: CardProps) => {
   const { pokemonData } = props;
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+  const [showStats, setShowStats] = useState(false);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -24,6 +25,8 @@ const PokemonCard = (props: CardProps) => {
     fetchPokemon();
   }, [pokemonData]);
 
+  const handleToggleStats = () => setShowStats((prev) => !prev);
+
   if (loading) return <PokeLoader />;
   if (!pokemon) return <div>No se encontró el Pokémon</div>;
 
@@ -32,8 +35,20 @@ const PokemonCard = (props: CardProps) => {
       <div className={`card ${styles.card}`}>
         <div className={`card-body ${styles.cardBody}`}>
           <div className={`stats-container ${styles.statsContainer}`}>
-            <PokemonStatsBars pokemon={pokemon} />
+            {(showStats || window.innerWidth > 768) && (
+              <PokemonStatsBars pokemon={pokemon} />
+            )}
           </div>
+          {/* Solo se muestra el botón en pantallas pequeñas */}
+          <button
+            className={styles.toggleButton}
+            onClick={(e) => {
+              e.preventDefault(); // evitar navegación por el <Link>
+              handleToggleStats();
+            }}
+          >
+            {showStats ? "Ocultar Stats" : "Mostrar Stats"}
+          </button>
           <img
             src={pokemon.image}
             alt={pokemon.name}

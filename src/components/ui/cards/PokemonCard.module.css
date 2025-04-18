@@ -145,3 +145,39 @@
     width: 100%;
   }
 }
+
+/* Estados */
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+/* Botón de toggle */
+.toggleButton {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: red;
+  color: gold;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Solo mostrar en dispositivos pequeños */
+@media (max-width: 768px) {
+  .toggleButton {
+    display: block;
+  }
+
+  .statsContainer {
+    display: none;
+  }
+
+  .show {
+    display: block !important;
+  }
+}
