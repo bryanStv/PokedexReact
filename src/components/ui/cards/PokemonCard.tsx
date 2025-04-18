@@ -4,6 +4,7 @@ import { Pokemon } from "../../../models/interfaces/Pokemon";
 import styles from "./PokemonCard.module.css";
 import PokeLoader from "../loader/PokeLoader";
 import PokemonStatsBars from "../graphics/PokemonStatsBars";
+import playPokemonCry from "../../../utils/functions/pokemon/playPokemonCry";
 
 interface CardProps {
   pokemonData: Pokemon;
@@ -34,7 +35,11 @@ const PokemonCard = (props: CardProps) => {
           <div className={`stats-container ${styles.statsContainer}`}>
             <PokemonStatsBars pokemon={pokemon} />
           </div>
-          <img src={pokemon.image} alt={pokemon.name} />
+          <img
+            src={pokemon.image}
+            alt={pokemon.name}
+            onMouseEnter={() => playPokemonCry(pokemon)}
+          />
         </div>
         <div className={`card-footer ${styles.cardFooter}`}>
           <h2>{pokemon.name}</h2>

@@ -7,6 +7,7 @@ import PokeLoader from "../../components/ui/loader/PokeLoader";
 import { colorMap } from "../../models/records/ColorMap";
 import { translateShapeToSpanish } from "../../utils/functions/pokemon/translateShapeToSpanish";
 import PokemonStatsBars from "../../components/ui/graphics/PokemonStatsBars";
+import playPokemonCry from "../../utils/functions/pokemon/playPokemonCry";
 
 const PokemonPage = () => {
   const { id } = useParams();
@@ -32,21 +33,6 @@ const PokemonPage = () => {
     fetchPokemonData();
   }, [fetchPokemonData]);
 
-  const handlePokemonCry = () => {
-    if (pokemon?.cries?.latest) {
-      const audio = new Audio(pokemon.cries.latest);
-      audio.play().catch((e) => {
-        if (pokemon?.cries?.legacy) {
-          const audio2 = new Audio(pokemon.cries.legacy);
-          console.warn("Reproduciendo el grito legacy, no hay latest:", e);
-          audio2.play().catch((error) => {
-            console.warn("Error al reproducir el grito del Pokémon:", error);
-          });
-        }
-      });
-    }
-  };
-
   if (id === "0") return <div>Pokemon no encontrado, prueba con otro</div>;
   if (loading) return <PokeLoader />;
   if (!pokemonSpecies) return <div>No se encontró la Especie del pokemon</div>;
@@ -62,7 +48,7 @@ const PokemonPage = () => {
           className={styles.pokemonImage}
           src={pokemon.image}
           alt={`Imagen del pokemon ${pokemon.name}`}
-          onMouseEnter={handlePokemonCry}
+          onMouseEnter={() => playPokemonCry(pokemon)}
         />
       </header>
 
