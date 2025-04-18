@@ -4,7 +4,6 @@ import { Pokemon } from "../../../models/interfaces/Pokemon";
 import styles from "./PokemonCard.module.css";
 import PokeLoader from "../loader/PokeLoader";
 import PokemonStatsBars from "../graphics/PokemonStatsBars";
-import playPokemonCry from "../../../utils/functions/pokemon/playPokemonCry";
 
 interface CardProps {
   pokemonData: Pokemon;
