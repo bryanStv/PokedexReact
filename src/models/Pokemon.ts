@@ -26,6 +26,14 @@ interface Cries {
   legacy: string;
 }
 
+export interface PokemonStat {
+  base_stat: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}
+
 export type PokemonType =
   | 'normal'
   | 'fire'
