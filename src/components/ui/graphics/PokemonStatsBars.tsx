@@ -1,6 +1,6 @@
-import { calculateStatPercentage } from "../../../utils/functions/pokemon/calculateStatPercentage";
-import StatBar from "./StatBar";
-import { Pokemon } from "../../../models/interfaces/Pokemon";
+import StatBar from './StatBar';
+import { Pokemon } from '../../../models/Pokemon';
+import { PokemonUtils } from '../../../utils/PokemonUtils';
 
 interface Props {
   pokemon: Pokemon;
@@ -13,38 +13,50 @@ const PokemonStatsBars = (props: Props) => {
       <StatBar
         label="HP"
         value={pokemon.stats.hp}
-        percentage={calculateStatPercentage(pokemon.stats.hp, "hp")}
+        percentage={PokemonUtils.calculateStatPercentage(
+          pokemon.stats.hp,
+          'hp'
+        )}
       />
       <StatBar
         label="Ataque"
         value={pokemon.stats.attack}
-        percentage={calculateStatPercentage(pokemon.stats.attack, "attack")}
+        percentage={PokemonUtils.calculateStatPercentage(
+          pokemon.stats.attack,
+          'attack'
+        )}
       />
       <StatBar
         label="Defensa"
         value={pokemon.stats.defense}
-        percentage={calculateStatPercentage(pokemon.stats.defense, "defense")}
+        percentage={PokemonUtils.calculateStatPercentage(
+          pokemon.stats.defense,
+          'defense'
+        )}
       />
       <StatBar
         label="Sp.Atk"
         value={pokemon.stats.specialAttack}
-        percentage={calculateStatPercentage(
+        percentage={PokemonUtils.calculateStatPercentage(
           pokemon.stats.specialAttack,
-          "specialAttack"
+          'specialAttack'
         )}
       />
       <StatBar
         label="Sp.Def"
         value={pokemon.stats.specialDefense}
-        percentage={calculateStatPercentage(
+        percentage={PokemonUtils.calculateStatPercentage(
           pokemon.stats.specialDefense,
-          "specialDefense"
+          'specialDefense'
         )}
       />
       <StatBar
         label="Velocidad"
         value={pokemon.stats.speed}
-        percentage={calculateStatPercentage(pokemon.stats.speed, "speed")}
+        percentage={PokemonUtils.calculateStatPercentage(
+          pokemon.stats.speed,
+          'speed'
+        )}
       />
     </>
   );

@@ -1,16 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./Header.module.css";
-import { useState } from "react";
-import { getPokemon } from "../../../services";
-import { getPokemonNamesFromJson } from "../../../services/pokemon/getPokemonNameFromJson";
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './Header.module.css';
+import { useState } from 'react';
+import { PokemonService } from '../../../services/PokemonService';
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const pokemonService = new PokemonService();
+  const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const navigate = useNavigate();
 
   const fetchPokemon = async () => {
-    const response = await getPokemon(searchTerm);
+    const response = await pokemonService.getPokemon(searchTerm);
     if (!response) return navigate(`/pokemon/0`);
     navigate(`/pokemon/${response.id}`);
   };
@@ -20,7 +20,7 @@ const Header = () => {
     setSearchTerm(value);
 
     if (value.length >= 3) {
-      const matches = getPokemonNamesFromJson(value);
+      const matches = pokemonService.getPokemonNamesFromJson(value);
       setSuggestions(matches);
     } else {
       setSuggestions([]);

@@ -1,4 +1,4 @@
-import styles from "./StatBar.module.css";
+import styles from './StatBar.module.css';
 
 interface StatBarProps {
   label: string;
@@ -15,7 +15,6 @@ const getBarColorClass = (percentage: number): string => {
 };
 
 const StatBar = ({ label, value, percentage }: StatBarProps) => {
-  //console.log(`StatBar "${label}": value=${value}, percentage=${percentage}`);
   const barColor = getBarColorClass(percentage);
 
   return (

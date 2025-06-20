@@ -1,11 +1,13 @@
-import style from "./Pokedex.module.css";
-import { Fragment, useState, useEffect } from "react";
-import PokemonCard from "../../components/ui/cards/PokemonCard";
-import { getPokemon } from "../../services/index";
-import { Pokemon } from "../../models/interfaces/Pokemon";
-import PokeLoader from "../../components/ui/loader/PokeLoader";
+import style from './Pokedex.module.css';
+import { Fragment, useState, useEffect } from 'react';
+import PokemonCard from '../../components/ui/cards/PokemonCard';
+import { Pokemon } from '../../models/Pokemon';
+import PokeLoader from '../../components/ui/loader/PokeLoader';
+import { PokemonService } from '../../services/PokemonService';
+import { PokemonUtils } from '../../utils/PokemonUtils';
 
 const Pokedex = () => {
+  const pokemonService = new PokemonService();
   const [startId, setStartId] = useState<number>(1);
   const pokemonsPerPage = 9;
 
@@ -20,7 +22,7 @@ const Pokedex = () => {
 
       const promises: Promise<Pokemon | undefined>[] = [];
       for (let i = startId; i <= endId; i++) {
-        promises.push(getPokemon(i));
+        promises.push(pokemonService.getPokemon(i));
       }
 
       const results = await Promise.all(promises);
@@ -57,17 +59,7 @@ const Pokedex = () => {
       ) : (
         <>
           <div className={style.buttonGroup}>
-            {[
-              { label: "Gen I", id: 1 },
-              { label: "Gen II", id: 152 },
-              { label: "Gen III", id: 252 },
-              { label: "Gen IV", id: 387 },
-              { label: "Gen V", id: 494 },
-              { label: "Gen VI", id: 650 },
-              { label: "Gen VII", id: 722 },
-              { label: "Gen VIII", id: 810 },
-              { label: "Gen IX", id: 906 },
-            ].map(({ label, id }) => (
+            {PokemonUtils.getGenerationData().map(({ label, id }) => (
               <button
                 key={label}
                 className={style.genButton}
@@ -79,9 +71,9 @@ const Pokedex = () => {
           </div>
           <div
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
             }}
           >
             {pokemonsData.map((pokemonData) => (
