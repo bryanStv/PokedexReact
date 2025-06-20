@@ -2,41 +2,48 @@ import styles from './Pokemon.module.css';
 import { PokemonSpecies, Pokemon } from '../../models/Pokemon';
 import { PokemonService } from '../../services/PokemonService';
 import { PokemonUtils } from '../../utils/PokemonUtils';
-import { useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PokeLoader from '../../components/ui/loader/PokeLoader';
 import PokemonStatsBars from '../../components/ui/graphics/PokemonStatsBars';
+import { useLocation } from 'react-router-dom';
 
 const PokemonPage = () => {
-  const { id } = useParams();
   const pokemonService = new PokemonService();
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [pokemonSpecies, setPokemonSpecies] = useState<
     (PokemonSpecies & { flavorText: string }) | null
   >(null);
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Obtener pokemonData del estado de navegación o de la URL
+      const pokemonData = location.state?.pokemonData;
+
+      if (pokemonData) {
+        setPokemon(pokemonData);
+        const speciesData = await pokemonService.getPokemonSpecies(
+          pokemonData.id.toString()
+        );
+        setPokemonSpecies(
+          speciesData as PokemonSpecies & { flavorText: string }
+        );
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [location.state]);
+
+  if (loading) return <PokeLoader />;
+  if (!pokemon) return <div>No se encontró el Pokémon</div>;
+  if (!pokemonSpecies) return <div>No se encontró la especie del Pokémon</div>;
+
   const backgroundColor = PokemonUtils.getColorMap(
     pokemonSpecies?.color?.name || ''
   );
 
-  const fetchPokemonData = useCallback(async () => {
-    if (!id) return;
-    const response = await pokemonService.getPokemonSpecies(id as string);
-    setPokemonSpecies(response as PokemonSpecies & { flavorText: string });
-    const idNumber = parseInt(id as string);
-    const response2 = await pokemonService.getPokemon(idNumber);
-    setPokemon(response2 as Pokemon);
-    setLoading(false);
-  }, [id]);
-
-  useEffect(() => {
-    fetchPokemonData();
-  }, [fetchPokemonData]);
-
-  if (id === '0') return <div>Pokemon no encontrado, prueba con otro</div>;
-  if (loading) return <PokeLoader />;
-  if (!pokemonSpecies) return <div>No se encontró la Especie del pokemon</div>;
-  if (!pokemon) return <div>No se encontró el pokemon</div>;
   return (
     <div className={styles.pokemonPage} style={{ backgroundColor }}>
       <header className={styles.headerPokemon}>

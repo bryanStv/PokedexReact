@@ -54,6 +54,12 @@ export class PokemonUtils {
     return hectograms / 10;
   };
 
+  static getRandomPokemonId: () => number = () => {
+    const max: number = 1025; // número total de pokémon
+    const randomId: number = Math.floor(Math.random() * max) + 1;
+    return randomId;
+  };
+
   static getColorMap = (colorName: string): string => {
     const colorMap: Record<string, string> = {
       red: '#ffebee',

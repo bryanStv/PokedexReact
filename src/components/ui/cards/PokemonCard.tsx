@@ -32,7 +32,11 @@ const PokemonCard = (props: CardProps) => {
   if (!pokemon) return <div>No se encontró el Pokémon</div>;
 
   return (
-    <Link to={`/pokemon/${pokemon.id}`} className={styles.link}>
+    <Link
+      to={`/pokemon/${pokemon.id}`}
+      state={{ pokemonData: pokemon }}
+      className={styles.link}
+    >
       <div className={`card ${styles.card}`}>
         <div className={`card-body ${styles.cardBody}`}>
           <div className={`stats-container ${styles.statsContainer}`}>
@@ -41,15 +45,17 @@ const PokemonCard = (props: CardProps) => {
             )}
           </div>
           {/* Solo se muestra el botón en pantallas pequeñas */}
-          <button
-            className={styles.toggleButton}
-            onClick={(e) => {
-              e.preventDefault(); // evitar navegación por el <Link>
-              handleToggleStats();
-            }}
-          >
-            {showStats ? 'Ocultar Stats' : 'Mostrar Stats'}
-          </button>
+          {window.innerWidth <= 768 && (
+            <button
+              className={styles.toggleButton}
+              onClick={(e) => {
+                e.preventDefault();
+                handleToggleStats();
+              }}
+            >
+              {showStats ? 'Ocultar Stats' : 'Mostrar Stats'}
+            </button>
+          )}
           <img src={pokemon.image} alt={pokemon.name} />
         </div>
         <div

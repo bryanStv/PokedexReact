@@ -56,12 +56,6 @@ export class PokemonService {
     }
   };
 
-  getRandomPokemonId: () => number = () => {
-    const max: number = 1025; // número total de pokémon
-    const randomId: number = Math.floor(Math.random() * max) + 1;
-    return randomId;
-  };
-
   getPokemonSpecies = async (
     id: string
   ): Promise<(PokemonSpecies & { flavorText: string }) | undefined> => {
